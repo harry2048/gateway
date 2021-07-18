@@ -1,0 +1,13 @@
+server:
+  port: 9000
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: test_route
+          uri: http://127.0.0.1:9999
+          predicates:
+            - Path=/clientTest/**
+          filters:
+            # 若是AbstractGatewayFilterFactory的子类，则只写前缀即可
+            - AddSignature
